@@ -55,7 +55,7 @@ return [
     */
 
     'auth_logo' => [
-        'enabled' => false,
+        'enabled' => true,
         'img' => [
             'path' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
             'alt' => 'Auth Logo',
@@ -86,8 +86,8 @@ return [
             'path' => 'vendor/adminlte/dist/img/logo_cargando1.png',
             'alt' => 'AdminLTE Preloader Image',
             'effect' => 'animation__shake',
-            'width' => 300,
-            'height' => 300,
+            'width' => 250,
+            'height' => 250,
         ],
     ],
 
@@ -263,7 +263,7 @@ return [
         [
             'type' => 'navbar-search',
             'text' => 'search',
-            'topnav_right' => true,
+            'topnav_right' => false,
         ],
         [
             'type' => 'fullscreen-widget',
@@ -271,15 +271,19 @@ return [
         ],
 
         // Sidebar items:
+       /*
+       BUSCADOR
         [
             'type' => 'sidebar-menu-search',
             'text' => 'search',
         ],
+        */ 
         [
             'text' => 'blog',
             'url' => 'admin/blog',
             'can' => 'manage-blog',
         ],
+        /*
         [
             'text' => 'pages',
             'url' => 'admin/pages',
@@ -287,10 +291,11 @@ return [
             'label' => 4,
             'label_color' => 'success',
         ],
-        ['header' => 'account_settings'],
+        */
+        ['header' => 'Backend'],
         [
             'text' => 'profile',
-            'url' => 'admin/settings',
+            'url' => '/home',
             'icon' => 'fas fa-fw fa-user',
         ],
         
@@ -300,8 +305,8 @@ return [
             'icon' => 'fas fa-fw fa-user',
         ],
         [
-            'text' => 'change_password',
-            'url' => 'admin/settings',
+            'text' => 'Productos',
+            'url' => 'admin/productos',
             'icon' => 'fas fa-fw fa-lock',
         ],
         [

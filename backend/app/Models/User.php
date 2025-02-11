@@ -2,14 +2,13 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    /** @use HasFactory<\Database\Factories\UserFactory> */
+    use HasFactory, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -20,6 +19,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'images', // Agregar este campo
     ];
 
     /**
@@ -44,15 +44,27 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
-    public function adminlte_image(){
-        return 'https://picsum.photos/300/300';
-    }
+
+
+
     public function adminlte_logo()
     {
         return $this->name ?? 'AdminLTE';
     }
+    public function adminlte_image()
+{
+    return $this->images ? asset($this->images) : asset('vendor/adminlte/dist/img/default-user.png');
+}
+
     
-    
-    
+    public function image()
+    {
+        return $this->hasOne(Image::class); // Relación con el modelo Image
+    }
+        // Función para obtener la imagen del usuario
+        public function getProfileImageAttribute()
+        {
+            return $this->images ? asset($this->images) : asset('default-user.png');
+        }
 
 }
