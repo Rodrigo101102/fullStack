@@ -57,7 +57,7 @@ return [
     'auth_logo' => [
         'enabled' => true,
         'img' => [
-            'path' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+            'path' => 'vendor/adminlte/dist/img/logo_cargando1.png',
             'alt' => 'Auth Logo',
             'class' => '',
             'width' => 80,
