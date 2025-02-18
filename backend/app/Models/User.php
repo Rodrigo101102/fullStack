@@ -10,33 +10,18 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var list<string>
-     */
     protected $fillable = [
         'name',
         'email',
         'password',
-        'images', // Agregar este campo
+        'images', // ✅ Se cambió a 'images' para coincidir con la base de datos
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var list<string>
-     */
     protected $hidden = [
         'password',
         'remember_token',
     ];
 
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
     protected function casts(): array
     {
         return [
@@ -45,26 +30,15 @@ class User extends Authenticatable
         ];
     }
 
-
-
-    public function adminlte_logo()
+    // Accesor para obtener la URL de la imagen correctamente
+    public function getImageUrlAttribute()
     {
-        return $this->name ?? 'AdminLTE';
+        return $this->images ? asset('storage/' . $this->images) : asset('vendor/adminlte/dist/img/default-user.png');
     }
+
+    // Para que AdminLTE muestre la imagen correcta
     public function adminlte_image()
-{
-    return $this->images ? asset($this->images) : asset('vendor/adminlte/dist/img/default-user.png');
-}
-
-    
-    public function image()
     {
-        return $this->hasOne(Image::class); // Relación con el modelo Image
+        return $this->image_url;
     }
-        // Función para obtener la imagen del usuario
-        public function getProfileImageAttribute()
-        {
-            return $this->images ? asset($this->images) : asset('default-user.png');
-        }
-
 }
