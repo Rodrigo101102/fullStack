@@ -8,6 +8,9 @@
     <div class="card shadow">
         <div class="card-header d-flex justify-content-between align-items-center bg-dark text-white">
             <h4 class="mb-0 mx-auto">Usuarios</h4> <!-- Título centrado -->
+            <a href="{{ route('users.create') }}" class="btn btn-dark px-3 py-2 btn-add-user">
+                <i class="fas fa-user-plus"></i> Agregar Usuario
+            </a>
         </div>
         <div class="card-body">
             <!-- Formulario de búsqueda centrado -->
@@ -80,22 +83,21 @@
 
 @stop
 
-
 @section('css')
     <style>
         /* Estilo del botón Agregar Usuario */
-        .btn-custom {
-            background-color: #4CAF50; /* Verde */
+        .btn-add-user {
+            background-color: #000; /* Negro */
             color: white;
             font-weight: bold;
             padding: 10px 20px;
-            border-radius: 25px;
+            border-radius: 8px;
             transition: all 0.3s ease;
         }
 
-        .btn-custom:hover {
-            background-color: #45a049;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        .btn-add-user:hover {
+            background-color: #333;
+            box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
         }
 
         /* Estilo de la tabla y botones */
@@ -191,5 +193,3 @@
         });
     </script>
 @stop
-
-

@@ -29,13 +29,13 @@
                         <!-- Nombre -->
                         <div class="form-group mb-3">
                             <label class="fw-bold text-dark">Nombre</label>
-                            <input type="text" name="name" class="form-control border-dark" value="{{ old('name') }}" required>
+                            <input type="text" name="name" class="form-control border-dark" required>
                         </div>
 
                         <!-- Email -->
                         <div class="form-group mb-3">
                             <label class="fw-bold text-dark">Email</label>
-                            <input type="email" name="email" class="form-control border-dark" value="{{ old('email') }}" required>
+                            <input type="email" name="email" class="form-control border-dark" required>
                         </div>
 
                         <!-- Contraseña -->
@@ -43,6 +43,9 @@
                             <label class="fw-bold text-dark">Contraseña</label>
                             <input type="password" name="password" class="form-control border-dark" required>
                         </div>
+
+                        <!-- Input oculto para imagen -->
+                        <input type="file" name="images" id="images" class="d-none" accept="image/*">
 
                         <!-- Botones -->
                         <div class="d-flex justify-content-center mt-4">
@@ -56,16 +59,14 @@
                 <div class="col-md-6 d-flex justify-content-center align-items-center">
                     <div class="position-relative">
                         <h5 class="fw-bold text-dark text-center mb-3">Imagen de perfil</h5>
-                        <!-- Imagen de perfil -->
-                        <img src="{{ asset('vendor/adminlte/dist/img/default-user.png') }}" 
-                             class="img-fluid rounded-circle profile-img shadow" 
+                        <img id="profile-img-preview"
+                             src="{{ asset('vendor/adminlte/dist/img/default-user.png') }}"
+                             class="img-fluid rounded-circle profile-img shadow"
                              style="width: 150px; height: 150px; object-fit: cover; border: 5px solid #000000;">
                         <!-- Icono de cámara para cambiar la imagen -->
-                        <div class="camera-icon position-absolute bottom-0 end-0" style="background-color: rgba(0, 0, 0, 0.6); border-radius: 50%; padding: 5px;">
+                        <div class="camera-icon position-absolute bottom-0 end-0" style="background-color: rgba(0, 0, 0, 0.6); border-radius: 50%; padding: 5px; cursor: pointer;">
                             <i class="fas fa-camera text-white" style="font-size: 20px;"></i>
                         </div>
-                        <!-- Input oculto para seleccionar la imagen -->
-                        <input type="file" name="images" id="images" class="d-none" accept="image/*">
                     </div>
                 </div>
             </div>
@@ -142,18 +143,28 @@
 
 @section('js')
     <script>
-        // Cambiar la imagen al hacer clic en el ícono de la cámara
+        // Hacer clic en la cámara abre el input file
         document.querySelector('.camera-icon').addEventListener('click', function() {
             document.getElementById('images').click();
         });
 
-        // Mostrar la vista previa de la imagen seleccionada
+        // Vista previa de la imagen seleccionada
         document.getElementById('images').addEventListener('change', function(e) {
-            const reader = new FileReader();
-            reader.onload = function(event) {
-                document.querySelector('.profile-img').src = event.target.result;
-            };
-            reader.readAsDataURL(e.target.files[0]);
+            if (e.target.files.length > 0) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    document.getElementById('profile-img-preview').src = event.target.result;
+                };
+                reader.readAsDataURL(e.target.files[0]);
+            }
+        });
+
+        // Evita enviar el campo vacío si no se selecciona imagen
+        document.querySelector('form').addEventListener('submit', function(e) {
+            const fileInput = document.getElementById('images');
+            if (fileInput.files.length === 0) {
+                fileInput.removeAttribute('name'); // Evita enviar un campo vacío
+            }
         });
     </script>
 @stop
