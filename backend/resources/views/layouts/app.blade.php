@@ -80,9 +80,12 @@
             </div>
         </nav>
 
-        <main class="py-4">
-            @yield('content')
-        </main>
+        <div class="content-wrapper container-fluid">
+            <section class="content">
+                @yield('content')
+            </section>
+        </div>
+        
     </div>
 
     <!-- Bootstrap JS -->

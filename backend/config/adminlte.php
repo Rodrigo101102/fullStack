@@ -120,10 +120,10 @@ return [
     */
 
     'layout_topnav' => null,
-    'layout_boxed' => null,
-    'layout_fixed_sidebar' => null,
+    'layout_boxed' => false,
+    'layout_fixed_sidebar' => true,
     'layout_fixed_navbar' => null,
-    'layout_fixed_footer' => null,
+    'layout_fixed_footer' => false,
     'layout_dark_mode' => null,
 
     /*
@@ -296,19 +296,26 @@ return [
         [
             'text' => 'profile',
             'url' => '/home',
-            'icon' => 'fas fa-fw fa-user',
+            'icon' => 'fas fa-fw fa-user'
+            ,
         ],
         
         [
             'text' => 'Usuarios',
             'url' => 'admin/users',
-            'icon' => 'fas fa-fw fa-user',
+            'icon' => 'fas fa-fw fa-users',
         ],
         [
             'text' => 'Productos',
             'url' => 'admin/productos',
-            'icon' => 'fas fa-fw fa-lock',
+            'icon' => 'fas fa-cubes',
         ],
+        [
+            'text' => 'Categoria',
+            'url' => 'admin/categorias',
+            'icon' => 'fas fa-box',
+        ],
+         /*
         [
             'text' => 'multilevel',
             'icon' => 'fas fa-fw fa-share',
@@ -347,7 +354,10 @@ return [
                 ],
             ],
         ],
-        ['header' => 'labels'],
+        */
+        
+      /*  ['header' => 'labels'],
+        /*
         [
             'text' => 'important',
             'icon_color' => 'red',
@@ -363,6 +373,7 @@ return [
             'icon_color' => 'cyan',
             'url' => '#',
         ],
+        */
     ],
 
     /*
